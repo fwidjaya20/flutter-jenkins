@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertesting/app/dependency_injector_container.dart';
 import 'package:fluttertesting/app/environment.dart';
+import 'package:fluttertesting/features/heroes/presentations/pages/hero_page.dart';
 import 'package:meta/meta.dart';
 
 class MyApp extends StatefulWidget {
@@ -18,6 +20,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   @override
+  void initState() {
+    super.initState();
+    DependencyInjectorContainer().init(env: widget.environment);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Unit Testing',
@@ -26,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: Container()
+      home: HeroPage()
     );
   }
 }
