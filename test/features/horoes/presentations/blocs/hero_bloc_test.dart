@@ -1,4 +1,3 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluttertesting/features/heroes/domains/entities/hero.dart';
@@ -21,7 +20,7 @@ void main() {
     final HeroBloc bloc = HeroBloc(
       getHeroesUseCase: getHeroesUseCaseMock
     );
-    expect(bloc, isA<HeroUninitialized>());
+    expect(bloc.state, isA<HeroUninitialized>());
     bloc.close();
   });
 
