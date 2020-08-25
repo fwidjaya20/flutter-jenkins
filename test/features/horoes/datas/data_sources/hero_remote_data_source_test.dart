@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluttertesting/app/environment.dart';
 import 'package:fluttertesting/cores/exceptions/exception.dart';
