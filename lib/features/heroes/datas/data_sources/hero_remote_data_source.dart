@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fluttertesting/cores/exceptions/exception.dart';
 import 'package:fluttertesting/cores/http_client/http_client.dart';
 import 'package:fluttertesting/features/heroes/datas/data_sources/hero_data_source.dart';
 import 'package:fluttertesting/features/heroes/datas/models/hero.dart';
@@ -27,7 +28,7 @@ class HeroRemoteDataSource extends HttpClient implements HeroDataSource {
 
       return results;
     } catch(e) {
-      throw e;
+      throw ServerException();
     }
   }
 }

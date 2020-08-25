@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluttertesting/app/environment.dart';
+import 'package:fluttertesting/cores/exceptions/exception.dart';
 import 'package:fluttertesting/features/heroes/datas/data_sources/hero_data_source.dart';
 import 'package:fluttertesting/features/heroes/datas/data_sources/hero_remote_data_source.dart';
 import 'package:fluttertesting/features/heroes/datas/models/hero.dart';
@@ -60,5 +62,18 @@ void main() {
     List<HeroModel> result = await dataSource.getHeroes();
 
     expect(result.length, equals(heroModels.length));
+  });
+
+  test('should throw an error when response code is 500 (server failed).', () async {
+    when(adapterMock.fetch(any, any, any))
+      .thenAnswer((_) async => ResponseBody.fromString(
+        jsonEncode({"error": "Something Went Wrong"}),
+        500,
+        headers: {
+          Headers.contentTypeHeader: [Headers.jsonContentType]
+        }
+      ));
+
+    expect(dataSource.getHeroes(), throwsA(isInstanceOf<ServerException>()));
   });
 }
