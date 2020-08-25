@@ -37,7 +37,7 @@ abstract class HttpClient {
         if(error.response?.data != null){
           debugPrint("[DIO DEBUG] Error Response : ${error.response.data}");
         }
-        debugPrint("[DIO DEBUG] Error Response : ${error.response.data}");
+        debugPrint("[DIO DEBUG] Error Response : ${error.response}");
 
         return error;
       }
