@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertesting/app/dependency_injector_container.dart';
 import 'package:fluttertesting/features/heroes/domains/entities/hero.dart';
 import 'package:fluttertesting/features/heroes/presentations/blocs/hero_bloc.dart';
 import 'package:fluttertesting/features/heroes/presentations/blocs/hero_event.dart';
@@ -19,7 +20,9 @@ class _HeroPageState extends State<HeroPage> {
   @override
   void initState() {
     super.initState();
-    this._bloc = HeroBloc();
+    this._bloc = HeroBloc(
+      getHeroesUseCase: DependencyInjectorContainer.heroesUseCase
+    );
     this.fetchHeroes();
   }
 
