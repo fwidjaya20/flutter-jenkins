@@ -8,8 +8,9 @@ class HeroRemoteDataSource extends HttpClient implements HeroDataSource {
   String baseUrl;
 
   HeroRemoteDataSource({
-    @required this.baseUrl
-  }) : super(baseUrl: baseUrl);
+    @required this.baseUrl,
+    HttpClientAdapter mockAdapter
+  }) : super(baseUrl: baseUrl, adapter: mockAdapter);
 
   @override
   Future<List<HeroModel>> getHeroes() async {
