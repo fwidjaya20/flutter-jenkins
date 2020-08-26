@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class HeroEntity {
+class HeroEntity extends Equatable {
   final int id;
   final String name;
   final String localizedName;
@@ -18,4 +19,15 @@ class HeroEntity {
     @required this.roles,
     @required this.legs
   });
+
+  @override
+  List<Object> get props => [
+    id,
+    name,
+    localizedName,
+    primaryAttr,
+    attackType,
+    roles,
+    legs
+  ];
 }
