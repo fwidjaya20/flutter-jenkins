@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                sh "echo CHECKOUT_TEST"
+                sh "flutter test"
             }
         }
         stage ('Build') {
