@@ -2,14 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage ('Checkout') {
+        stage ('Doctor') {
             steps {
-                sh "echo CHECKOUT_STAGE"
+                sh "echo DOCTOR_STAGE"
             }
         }
         stage ('Test') {
             steps {
-                sh "flutter test"
+                sh "echo TEST_STAGE"
+            }
+        }
+        stage ('Clean') {
+            steps {
+                sh "echo CLEAN_BUILD"
             }
         }
         stage ('Build') {
