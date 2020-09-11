@@ -37,13 +37,14 @@ pipeline {
             steps {
                 sh '''
                 #!/bin/sh
-                flutter build apk --release
+                #flutter build apk --release
+                echo BUILD_STAGE
                 '''
             }
         }
         stage ('Publish') {
             steps {
-                sh "echo CHECKOUT_PUBLISH"
+                slackSend channel: '#development', message: 'Testing 1'
             }
         }
     }
