@@ -35,7 +35,10 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                sh "echo CHECKOUT_BUILD"
+                sh '''
+                #!/bin/sh
+                flutter build apk --release
+                '''
             }
         }
         stage ('Publish') {
