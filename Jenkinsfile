@@ -1,10 +1,19 @@
 pipeline {
     agent any
-
     stages {
+        stage ('Checkout') [
+            steps {
+                checkout scm
+            }
+        ]
         stage ('Doctor') {
             steps {
                 sh "flutter doctor"
+            }
+        }
+        stage ('Download lcov converter') {
+            steps {
+                sh "curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py"
             }
         }
         stage ('Test') {
