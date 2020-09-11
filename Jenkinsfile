@@ -1,3 +1,20 @@
+def uploadFileToSlack() {
+    def file = "build/app/outputs/flutter-apk/apk-release.apk"
+    def botAuthToken = "xoxb-1360101043748-1369947899601-BdygiEUJXYUeq7o2YBlX8wyF"
+    def channelName = "#debug_jenkins"
+    try {
+        sh(script: """
+                curl --request POST \
+                --url https://slack.com/api/files.upload \
+                --header 'content-type: multipart/form-data' \
+                --form token=$botAuthToken \
+                --form 'channels=$channelName' \
+                --form file="@${file}"
+                """
+                )
+    } catch (Exception e) {}
+ }
+
 pipeline {
     agent any
 
@@ -43,9 +60,7 @@ pipeline {
         }
         stage ('Publish') {
             steps {
-                sh '''
-                curl -F file=@build/app/outputs/flutter-apk/app-release.apk -F channels=C01APBGQB2Q -H "Authorization: Bearer xoxb-1360101043748-1381038767568-ScsXMSy00J1riQlHLyLit9hn" https://slack.com/api/files.upload
-                '''
+                uploadFileToSlack()
             }
         }
     }
