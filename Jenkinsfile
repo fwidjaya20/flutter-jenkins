@@ -1,20 +1,3 @@
-def uploadFileToSlack() {
-    def file = "/var/jenkins_home/workspace/FlutterTestAppJenkins_master/build/app/outputs/flutter-apk/app-release.apk"
-    def botAuthToken = "xoxb-1360101043748-1369947899601-BdygiEUJXYUeq7o2YBlX8wyF"
-    def channelName = "#debug_jenkins"
-    try {
-        sh(script: """
-                curl --request POST \
-                --url https://slack.com/api/files.upload \
-                --header 'content-type: multipart/form-data' \
-                --form token=$botAuthToken \
-                --form channels=$channelName \
-                --form file="@${file}"
-                """
-                )
-    } catch (Exception e) {}
- }
-
 pipeline {
     agent any
 
@@ -60,7 +43,7 @@ pipeline {
         // }
         stage ('Publish') {
             steps {
-                uploadFileToSlack()
+                slackUploadFile 'build/app/outputs/flutter-apk/app-release.apk'
             }
         }
     }
