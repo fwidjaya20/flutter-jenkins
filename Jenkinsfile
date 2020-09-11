@@ -43,8 +43,8 @@ pipeline {
         }
         stage ('Publish') {
             steps {
-                slackSend channel: '#development', message: 'Testing 1', tokenCredentialId: '75a952a2-c884-4bb1-b857-a46ca2971406'
-                slackUploadFile 'build/app/outputs/flutter-apk/app-release.apk'
+                slackSend channel: '#development', color: 'good', message: 'Testing', tokenCredentialId: 'personal-slack-token'
+                slackUploadFile channel: '#development', credentialId: 'personal-slack-token', filePath: 'build/app/outputs/flutter-apk/app-release.apk'
             }
         }
     }
