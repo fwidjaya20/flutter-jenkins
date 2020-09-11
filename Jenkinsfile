@@ -9,7 +9,13 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                sh "flutter test"
+                sh "flutter test --coverage"
+            }
+            post {
+                always {
+                    sh "python3 lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml"
+                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
+                }
             }
         }
         stage ('Clean') {
