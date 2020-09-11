@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                sh "echo futter test"
+                sh "flutter test"
             }
         }
         stage ('Clean') {
