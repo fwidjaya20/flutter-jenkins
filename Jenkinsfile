@@ -44,7 +44,7 @@ pipeline {
         stage ('Publish') {
             steps {
                 sh '''
-                curl -F file=@build/app/outputs/flutter-apk/app-release.apk -F channels=C01APBGQB2Q -H "Authorization: Bearer xoxb-1360101043748-1381038767568-swyLAT5URRfmUiDGKki58HJT" https://slack.com/api/files.upload
+                curl -F file=@build/app/outputs/flutter-apk/app-release.apk -F channels=C01APBGQB2Q -H "Authorization: Bearer xoxb-1360101043748-1381038767568-ScsXMSy00J1riQlHLyLit9hn" https://slack.com/api/files.upload
                 '''
             }
         }
