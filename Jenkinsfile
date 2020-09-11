@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Doctor') {
             steps {
-                sh "echo DOCTOR_STAGE"
+                sh "flutter doctor"
             }
         }
         stage ('Test') {
