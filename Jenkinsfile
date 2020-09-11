@@ -37,14 +37,13 @@ pipeline {
             steps {
                 sh '''
                 #!/bin/sh
-                #flutter build apk --release
-                echo BUILD_STAGE
+                flutter build apk --release
                 '''
             }
         }
         stage ('Publish') {
             steps {
-                slackSend channel: '#development', message: 'Testing 1'
+                slackUploadFile channel: '#development', credentialId: '75a952a2-c884-4bb1-b857-a46ca2971406', filePath: 'build/app/outputs/flutter-apk/app-release.apk'
             }
         }
     }
