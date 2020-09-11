@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('Clean') {
             steps {
-                sh "echo CLEAN_BUILD"
+                sh "flutter clean"
             }
         }
         stage ('Build') {
